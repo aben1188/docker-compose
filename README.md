@@ -52,19 +52,13 @@
 
 4、使用非本地容器MySQL时，可以设置MYSQL_CONNECT_TYPE=cloud，并修改CLOUD_MYSQL_*相应属性即可。
 
-
 ### 在宿主机安全组和防火墙中放行如下端口：
 
-　　80（NGINX_HTTP_HOST_PORT）
-  
-　　443（NGINX_HTTPS_HOST_PORT）
-  
-　　3306（MYSQL_HOST_PORT）
-  
-　　6379（REDIS_HOST_PORT）
-  
+　　80（NGINX_HTTP_HOST_PORT）  
+　　443（NGINX_HTTPS_HOST_PORT）  
+　　3306（MYSQL_HOST_PORT）  
+　　6379（REDIS_HOST_PORT）  
 　　9501（PHP_HYPERF_PORT）
-
 
 **注意：**
 
@@ -99,7 +93,7 @@ MYSQL_HOST_PORT=3306
 # 宿主机映射到redis容器的访问端口
 REDIS_HOST_PORT=6379
 
-# mochat超级管理员手机号，可修改你自己的手机号
+# mochat超级管理员手机号，可修改为你自己的手机号
 MOCHAT_ADMIN=18888888888
 # mochat超级管理员密码，可修改为你自己的密码
 MOCHAT_PASSWORD=123456
@@ -125,14 +119,14 @@ API_SERVER_URL=backend.yourdomain.com
 `cp docker-compose.sample.yml docker-compose.yml`  #默认无需修改，尽量不要修改该文件
 
 
-## 三、构建
+## 三、构建镜像
 
 ```
 cd /path/to/docker-compose
 docker-compose build
 ```
 
-## 四、运行
+## 四、运行容器
 
 ```
 cd /path/to/docker-compose
@@ -158,7 +152,7 @@ docker-compose up -d
   
 这属于正常现象，不属于错误；并且这四个容器必须都显示“exited with code 0”或“Exited (0)”之后，才能正常访问并登录MoChat系统。
 
-这是因为，mochat_init容器仅用于初始化MoChat系统，而dashboard容器、sidebar容器、operation容器仅用于编译MoChat系统的前端文件，编译完之后(编译后的文件保存在新创建的mochat/dashboard/dist目录下；mochat/dashboard/目录被挂载到了nginx容器的/opt/www/dashboard/目录)，这些容器即会终止运行；换言之，这些容器终止运行之后才表明前端文件编译完成了，这时候MoChat系统才可以正常接受访问。
+这是因为，mochat_init容器仅用于初始化MoChat系统，而dashboard容器、sidebar容器、operation容器仅用于编译MoChat系统的前端文件，编译完之后这些容器即会终止运行；换言之，这些容器终止运行之后才表明前端文件编译完成了，这时候MoChat系统才可以正常接受访问。
 
 成功启动运行的时间根据主机配置、网络速度等因素的不同，时间可能会比较长，请耐心等待。
 
@@ -189,16 +183,16 @@ docker-compose up mochat_init
 
 mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env，这三个.env文件默认一般无需修改，会在初始化过程中使用docker-compose/.env中的设置自动修改。
 
-不过需要特别注意的是，其中api-server的端口默认被错误地设置为了nginx服务的宿主机映射端口(比如80)，而非backend服务的宿主机映射端口(比如9501)，因此仍需进行手动修改该端口，否则，会等同于访问：backend.yourdomain.com，你将会只能看到“Hello Mochat”。
+不过需要特别注意的是，其中api-server的端口默认被错误地设置为了nginx服务的宿主机映射端口(比如80)，而非backend服务的宿主机映射端口(比如9501)，因此仍需进行手动修改该端口，否则，会等同于访问：backend.yourdomain.com，你将会只能看到“Hello Mochat”，而无法看到MoChat系统的登录界面。
 
-手动修改步骤：
+手动修改步骤如下：
 
-1、先停止所有MoChat相关容器：在执行docker-compose up的shell会话中执行ctrl+c；
+1、先停止所有MoChat相关容器：如果之前是在宿主机前台运行的话，则执行快捷键ctrl+c即可，否则需要执行：docker-compose stop backend nginx mysql redis；
 
 2、依次打开mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env文件，将VUE_APP_API_BASE_URL的值修改为：http://backend.yourdomain.com:9501 ，如下：
 　　VUE_APP_API_BASE_URL=http://backend.a1b2.top:9501
   
-3、再次执行docker-compose up即可。
+3、再次执行docker-compose up或docker-compose up -d即可。
 
 
 ## 五、热更新
@@ -213,6 +207,6 @@ mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env，这三个.
 
 在浏览器输入：http://dashboard.yourdomain.com
 
-输入你前面在docker-compose/.env文件设置的用户名和密码（如果你未修改，则默认为: `18888888888` / `123456`）
+输入你之前在docker-compose/.env文件设置的用户名和密码（如果你未修改，则默认为: `18888888888` / `123456`）
 
 进入项目，在`系统设置` -> `授权管理` 中点击 `添加企业微信号`（如果您没有企业微信号，您可以到企业微信官网网站注册调试用的`企业微信号`）

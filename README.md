@@ -1,10 +1,10 @@
 ## 一、前提条件
 
-* 已安装：docker、docker-compose
+### 已安装：docker、docker-compose
 
 　　如果未安装docker、docker-compose，可使用[docker一键安装脚本](https://github.com/aben1188/docker-install-sh)进行安装。
   
-* 克隆下载下面两个git仓库
+### 克隆下载下面两个git仓库
 
 　　git clone https://github.com/mochat-cloud/mochat.git
 
@@ -53,7 +53,7 @@
 4、使用非本地容器MySQL时，可以设置MYSQL_CONNECT_TYPE=cloud，并修改CLOUD_MYSQL_*相应属性即可。
 
 
-* 在宿主机安全组和防火墙中放行如下端口：
+### 在宿主机安全组和防火墙中放行如下端口：
 
 　　80（NGINX_HTTP_HOST_PORT）
   
@@ -148,7 +148,6 @@ docker-compose up
 docker-compose up -d
 ```
 
-
 **注意：**
 
 执行docker-compose up时，dashboard、sidebar、operation、mochat_init容器运行完后会自动退出，显示如下信息：
@@ -161,7 +160,6 @@ docker-compose up -d
 这属于正常现象，不属于错误；并且这四个容器必须都显示“exited with code 0”或“Exited (0)”之后，才能正常访问并登录MoChat系统。
 
 这是因为，mochat_init容器仅用于初始化MoChat系统，而dashboard容器、sidebar容器、operation容器仅用于编译MoChat系统的前端文件，编译完之后(编译后的文件保存在新创建的mochat/dashboard/dist目录下；而mochat/dashboard/目录已被挂载到了nginx容器的/opt/www/dashboard/目录)，这些容器即会终止运行；换言之，这些容器终止运行之后才表明前端文件编译完成了，这时候MoChat系统才可以正常接受访问。
-
 
 成功启动运行的时间根据主机配置、网络速度等因素的不同，时间可能会比较长，请耐心等待。
 

@@ -37,7 +37,7 @@
 ```
 注意：
 
-　　1、如果你仅在本地浏览，则无需解析，直接在系统hosts文件中添加如下内容即可(推荐使用SwitchHosts来修改hosts)：
+　　1、如果你仅在本地浏览，则无需解析，直接在系统hosts文件中添加如下内容即可(推荐使用[SwitchHosts](https://github.com/oldj/SwitchHosts/blob/master/README_cn.md)来修改hosts)：
   
 　　　　127.0.0.1 backend.yourdomain.com
 　　　　127.0.0.1 dashboard.yourdomain.com
@@ -120,21 +120,6 @@ API_SERVER_URL=backend.yourdomain.com
 
 - `cp docker-compose.sample.yml docker-compose.yml`  #默认无需修改
 
-- 2.2 vhost配置，推荐使用 [SwitchHosts](https://github.com/oldj/SwitchHosts/blob/master/README_cn.md)
-
-```
-127.0.0.1 api.mochat.com
-127.0.0.1 scrm.mochat.com
-127.0.0.1 sidebar.mochat.com
-127.0.0.1 op.mochat.com
-```
-
-提示：
-```
-1、api.mo.chat为占用域名，请避免使用
-2、.dev与.app域名为chrome域名，使用chrome时请避免使用
-3、使用非本地容器MySQL时，可以设置MYSQL_CONNECT_TYPE=cloud，并修改CLOUD_MYSQL_*相应属性即可
-```
 
 ## 三、运行
 ```

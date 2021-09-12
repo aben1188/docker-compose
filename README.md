@@ -34,10 +34,10 @@
 
 1、如果你仅在本地浏览，则无需解析，直接在系统hosts文件中添加如下内容即可(推荐使用SwitchHosts来修改hosts)：
   
-　　127.0.0.1 backend.yourdomain.com　
-　　127.0.0.1 dashboard.yourdomain.com　
-　　127.0.0.1 sidebar.yourdomain.com　
-　　127.0.0.1 operation.yourdomain.com　
+　　127.0.0.1 backend.yourdomain.com  
+　　127.0.0.1 dashboard.yourdomain.com  
+　　127.0.0.1 operation.yourdomain.com  
+　　127.0.0.1 sidebar.yourdomain.com
 
 　　hosts文件在各操作系统中的路径：
 　　　　Windows系统：C:\Windows\System32\drivers\etc\hosts

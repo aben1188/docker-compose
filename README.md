@@ -15,7 +15,7 @@
 　　　　或使用github国内源加速下载：git clone https://github.com.cnpmjs.org/mochat-cloud/docker-compose.git
 
 * 解析要使用到的二级域名，包括(假设一级域名为yourdomain.com，需改为你的真实域名)：
-
+　
 　　backend.yourdomain.com
   
 　　dashboard.yourdomain.com
@@ -23,6 +23,24 @@
 　　operation.yourdomain.com
   
 　　sidebar.yourdomain.com
+  
+```
+注意：
+
+　　如果你仅在本地浏览，则无需解析，直接在系统hosts文件中注明即可：
+
+　　　　127.0.0.1 backend.yourdomain.com
+
+　　　　127.0.0.1 dashboard.yourdomain.com
+
+　　　　127.0.0.1 sidebar.yourdomain.com
+
+　　　　127.0.0.1 operation.yourdomain.com
+
+hosts文件在各操作系统中的路径：
+　　Windows系统：C:\Windows\System32\drivers\etc\hosts
+　　类Unix系统(Linux、Mac、iOS、Android等)：/etc/hosts
+```
 
 * 在宿主机安全组和防火墙中放行如下端口：
 
@@ -56,7 +74,42 @@
 ### 2.1 docker-compose 配置
 
 - `cd /path/to/docker-compose`
-- `cp .env.example .env`  #根据自己的项目，修改相应配置，详见.env文件中的注释
+- `cp .env.example .env`  #根据自己的情况，修改相应配置，详见下面的提示
+```
+# 如下端口部分，如果使用默认端口，则无需修改
+
+# 宿主机映射到nginx容器的http协议端口
+NGINX_HTTP_HOST_PORT=80
+# 宿主机映射到nginx容器的https协议端口
+NGINX_HTTPS_HOST_PORT=443
+
+# 宿主机映射到mysql容器的访问端口
+MYSQL_HOST_PORT=3306
+
+# 宿主机映射到redis容器的访问端口
+REDIS_HOST_PORT=6379
+
+# mochat超级管理员手机号，可修改你自己的手机号
+MOCHAT_ADMIN=18888888888
+# mochat超级管理员密码，可修改为你自己的密码
+MOCHAT_PASSWORD=123456
+
+# 以下域名部分，如果你在本地浏览，则使用本地回环IP(127.0.0.1)即可
+# 否则，需修改为前面已解析过的相应域名
+# mochat.dashboard域名，不包含http://
+#DASHBOARD_URL=127.0.0.1
+DASHBOARD_URL=dashboard.yourdomain.com
+# mochat.sidebar域名，不包含http://
+#SIDEBAR_URL=127.0.0.1
+SIDEBAR_URL=sidebar.yourdomain.com
+# mochat.operation域名，不包含http://
+#OPERATION_URL=127.0.0.1
+OPERATION_URL=operation.yourdomain.com
+# mochat.api-server域名，不包含http://
+#API_SERVER_URL=127.0.0.1
+API_SERVER_URL=backend.yourdomain.com
+
+```
 - `cp docker-compose.sample.yml docker-compose.yml`  #默认无需修改
 
 - 2.2 vhost配置，推荐使用 [SwitchHosts](https://github.com/oldj/SwitchHosts/blob/master/README_cn.md)

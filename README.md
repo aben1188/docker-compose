@@ -25,12 +25,9 @@
 
 ### 解析要使用到的二级域名，包括(假设一级域名为yourdomain.com，需改为你的真实域名)：
 
-　　backend.yourdomain.com
-  
-　　dashboard.yourdomain.com
-  
-　　operation.yourdomain.com
-  
+　　backend.yourdomain.com  
+　　dashboard.yourdomain.com  
+　　operation.yourdomain.com  
 　　sidebar.yourdomain.com
   
 **注意：**

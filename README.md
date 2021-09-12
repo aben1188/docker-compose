@@ -8,11 +8,11 @@
 
 　　git clone https://github.com/mochat-cloud/mochat.git
 
-　　（或使用github国内源加速下载：git clone https://github.com.cnpmjs.org/mochat-cloud/mochat.git）
+　　　　或使用github国内源加速下载：git clone https://github.com.cnpmjs.org/mochat-cloud/mochat.git
 
 　　git clone https://github.com/mochat-cloud/docker-compose.git
 
-　　（或使用github国内源加速下载：git clone https://github.com.cnpmjs.org/mochat-cloud/docker-compose.git）
+　　　　或使用github国内源加速下载：git clone https://github.com.cnpmjs.org/mochat-cloud/docker-compose.git
 
 * 解析要使用到的二级域名，包括(假设一级域名为yourdomain.com，需改为你的真实域名)：
 
@@ -38,7 +38,7 @@
   
 　　1、如果宿主机的相应端口已被占用，请修改为未占用端口；
     
-　　2、如果http协议默认的80端口、https协议默认的443端口修改为了其他端口，访问时切记带上端口，比如：将80端口改为了8080端口，则访问时应为：http://dashboard.yourdomain.com:8080。
+　　2、如果http协议默认的80端口、https协议默认的443端口修改为了其他端口，访问时切记带上端口，比如：将80端口改为了8080端口，则访问时应为：http://dashboard.yourdomain.com:8080　。
     
 ```
 注意：

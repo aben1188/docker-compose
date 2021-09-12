@@ -81,7 +81,7 @@
 
 **注意：**
 
-1、必须在项目初始化之前修改/path/to/docker-compose/.env文件，项目初始化之后再来修改可能会不生效，除非停止并删除容器、删除数据库文件（docker-compose/data/mysql/*、docker-compose/data/redis/*；注：若需要push到git仓库，则不应删除两个目录中的.gitignore文件）、删除install.lock文件（docker-compose/services/mochat_init/install.lock）、删除缓存（mochat/api-server/runtime/*），然后重新构建容器（docker-compose build）、启动容器（docker-compose up）才能生效。
+1、必须在项目初始化之前修改/path/to/docker-compose/.env文件，项目初始化之后再来修改可能会不生效，除非停止并删除容器、删除数据库文件（docker-compose/data/mysql/\*、docker-compose/data/redis/\*；注：若需要push到git仓库，则不应删除两个目录中的.gitignore文件）、删除install.lock文件（docker-compose/services/mochat_init/install.lock）、删除缓存（mochat/api-server/runtime/\*），然后重新构建容器（docker-compose build）、启动容器（docker-compose up）才能生效。
 
 2、项目初始化：在执行docker-compose build构建完相关容器后，第一次执行docker-compose up时会对项目进行一次初始化，初始化完成后，会生成docker-compose/services/mochat_init/install.lock文件，之后再次执行docker-compose up时，mochat_init容器运行时检测到存在该install.lock文件的话，则不会再进行初始化，除非删除该install.lock文件。
 

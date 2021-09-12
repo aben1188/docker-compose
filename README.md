@@ -40,8 +40,8 @@
 　　127.0.0.1 sidebar.yourdomain.com
 
 　　hosts文件在各操作系统中的路径：
-　　　　Windows系统：C:\Windows\System32\drivers\etc\hosts
-　　　　类Unix系统(Linux、Mac、iOS、Android等)：/etc/hosts
+  　　　Windows系统：C:\Windows\System32\drivers\etc\hosts
+  　　　类Unix系统(Linux、Mac、iOS、Android等)：/etc/hosts
       
 2、api.mo.chat为占用域名，请避免使用。
   

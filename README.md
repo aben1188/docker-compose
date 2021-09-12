@@ -2,7 +2,7 @@
 
 * 已安装：docker、docker-compose
 
-　　注：如果未安装docker、docker-compose，可使用[docker一键安装脚本](https://github.com/aben1188/docker-install-sh)进行安装。
+　　如果未安装docker、docker-compose，可使用[docker一键安装脚本](https://github.com/aben1188/docker-install-sh)进行安装。
   
 * 克隆下载下面两个git仓库
 
@@ -36,11 +36,9 @@
   
 　　9501（PHP_HYPERF_PORT）
   
-　　注：
-  
-　　　　1、如果宿主机的相应端口已被占用，请修改为未占用端口；
+　　1、如果宿主机的相应端口已被占用，请修改为未占用端口；
     
-　　　　2、如果http协议默认的80端口、https协议默认的443端口修改为了其他端口，访问时切记带上端口，比如：将80端口改为了8080端口，则访问时应为：http://dashboard.yourdomain.com:8080。
+　　2、如果http协议默认的80端口、https协议默认的443端口修改为了其他端口，访问时切记带上端口，比如：将80端口改为了8080端口，则访问时应为：http://dashboard.yourdomain.com:8080。
     
 ```
 注意：

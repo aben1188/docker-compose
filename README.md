@@ -194,7 +194,7 @@ mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env，这三个.
 　　docker-compose stop backend nginx mysql redis；
 ```
 
-2、依次打开mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env文件，将`VUE_APP_API_BASE_URL`的值修改为：`http://backend.yourdomain.com:9501 `(如果你前面修改为了其他端口，则使用修改的端口），如下：
+2、依次打开mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env文件，将`VUE_APP_API_BASE_URL`的值修改为：`http://backend.yourdomain.com:9501 `(如果你前面修改为了其他端口，则使用修改后的端口），如下：
 ```　　
 　　VUE_APP_API_BASE_URL=http://backend.yourdomain.com:9501
 ```

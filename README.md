@@ -52,7 +52,7 @@
   
 3、dev与.app域名为chrome域名，使用chrome时请避免使用；
 
-4、使用非本地容器MySQL时，可以设置MYSQL_CONNECT_TYPE=cloud，并修改CLOUD_MYSQL_*相应属性即可。
+4、使用非本地容器MySQL时，可以设置MYSQL_CONNECT_TYPE=cloud，并修改CLOUD_MYSQL_\*相应属性即可。
 
 ### 在宿主机安全组和防火墙中放行端口
 

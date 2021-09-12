@@ -190,8 +190,10 @@ mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env，这三个.
 1、先停止所有MoChat相关容器：如果之前是在宿主机前台运行的话，则执行快捷键ctrl+c即可，否则需要执行：docker-compose stop backend nginx mysql redis；
 
 2、依次打开mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env文件，将VUE_APP_API_BASE_URL的值修改为：http://backend.yourdomain.com:9501 ，如下：
+```　　
 　　VUE_APP_API_BASE_URL=http://backend.a1b2.top:9501
-  
+```
+
 3、再次执行docker-compose up或docker-compose up -d即可。
 
 

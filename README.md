@@ -13,6 +13,16 @@
 　　git clone https://github.com/mochat-cloud/docker-compose.git
 
 　　　　或使用github国内源加速下载：git clone https://github.com.cnpmjs.org/mochat-cloud/docker-compose.git
+    
+```
+注意：
+
+　　1、mac版docker.desktop版本推荐3.0以上，以避免内存飙高问题；
+  
+　　2、两个项目必须克隆下载到同一个目录下：
+　　　　mochat-cloud/mochat 下载目录为 /path/to/mochat；
+　　　　mochat-cloud/docker-compose 下载目录为 /path/to/docker-compose。
+```
 
 * 解析要使用到的二级域名，包括(假设一级域名为yourdomain.com，需改为你的真实域名)：
 　
@@ -27,15 +37,22 @@
 ```
 注意：
 
-　　如果你仅在本地浏览，则无需解析，直接在系统hosts文件中添加如下内容即可(推荐使用SwitchHosts来修改hosts)：
+　　1、如果你仅在本地浏览，则无需解析，直接在系统hosts文件中添加如下内容即可(推荐使用SwitchHosts来修改hosts)：
+  
 　　　　127.0.0.1 backend.yourdomain.com
 　　　　127.0.0.1 dashboard.yourdomain.com
 　　　　127.0.0.1 sidebar.yourdomain.com
 　　　　127.0.0.1 operation.yourdomain.com
 
-　　hosts文件在各操作系统中的路径：
-　　　　Windows系统：C:\Windows\System32\drivers\etc\hosts
-　　　　类Unix系统(Linux、Mac、iOS、Android等)：/etc/hosts
+　　　　hosts文件在各操作系统中的路径：
+　　　　　　Windows系统：C:\Windows\System32\drivers\etc\hosts
+　　　　　　类Unix系统(Linux、Mac、iOS、Android等)：/etc/hosts
+      
+　　2、api.mo.chat为占用域名，请避免使用。
+  
+　　3、dev与.app域名为chrome域名，使用chrome时请避免使用；
+
+　　4、使用非本地容器MySQL时，可以设置MYSQL_CONNECT_TYPE=cloud，并修改CLOUD_MYSQL_*相应属性即可。
 ```
 
 * 在宿主机安全组和防火墙中放行如下端口：
@@ -49,19 +66,13 @@
 　　6379（REDIS_HOST_PORT）
   
 　　9501（PHP_HYPERF_PORT）
-  
-　　1、如果宿主机的相应端口已被占用，请修改为未占用端口；
-    
-　　2、如果http协议默认的80端口、https协议默认的443端口修改为了其他端口，访问时切记带上端口，比如：将80端口改为了8080端口，则访问时应为：http://dashboard.yourdomain.com:8080　。
-    
+
 ```
 注意：
 
-　　1、mac版docker.desktop版本推荐3.0以上，以避免内存飙高问题；
-  
-　　2、两个项目必须克隆下载到同一个目录下：
-　　　　mochat-cloud/mochat 下载目录为 /path/to/mochat；
-　　　　mochat-cloud/docker-compose 下载目录为 /path/to/docker-compose。
+　　1、如果宿主机的相应端口已被占用，请修改为未占用端口；
+    
+　　2、如果http协议默认的80端口、https协议默认的443端口修改为了其他端口，访问时切记带上端口，比如：将80端口改为了8080端口，则访问时应为：http://dashboard.yourdomain.com:8080　。
 ```
 
 
@@ -71,6 +82,7 @@
 
 - `cd /path/to/docker-compose`
 - `cp .env.example .env`  #根据自己的情况，修改相应配置，详见下面的提示
+
 ```
 # 如下端口部分，如果使用默认端口，则无需修改
 
@@ -104,8 +116,8 @@ OPERATION_URL=operation.yourdomain.com
 # mochat.api-server域名，不包含http://
 #API_SERVER_URL=127.0.0.1
 API_SERVER_URL=backend.yourdomain.com
-
 ```
+
 - `cp docker-compose.sample.yml docker-compose.yml`  #默认无需修改
 
 - 2.2 vhost配置，推荐使用 [SwitchHosts](https://github.com/oldj/SwitchHosts/blob/master/README_cn.md)

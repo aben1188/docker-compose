@@ -54,9 +54,10 @@
 ## 二、配置
 
 ### 2.1 docker-compose 配置
+
 - `cd /path/to/docker-compose`
-- `cp .env.example .env`，根据自己的项目，修改相应配置
-- `cp docker-compose.sample.yml docker-compose.yml`
+- `cp .env.example .env`  #根据自己的项目，修改相应配置，详见.env文件中的注释
+- `cp docker-compose.sample.yml docker-compose.yml`  #默认无需修改
 
 - 2.2 vhost配置，推荐使用 [SwitchHosts](https://github.com/oldj/SwitchHosts/blob/master/README_cn.md)
 

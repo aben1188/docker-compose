@@ -1,8 +1,8 @@
 ## 一、前提条件
 
-### 已安装：docker、docker-compose
+### 安装：docker、docker-compose
 
-　　如果未安装docker、docker-compose，可使用[docker一键安装脚本](https://github.com/aben1188/docker-install-sh)进行安装。
+　　可使用[docker一键安装脚本](https://github.com/aben1188/docker-install-sh)进行安装。
   
 ### 克隆下载下面两个git仓库
 
@@ -23,7 +23,7 @@
 　　mochat-cloud/docker-compose 下载目录为 /path/to/docker-compose。
 
 
-* 解析要使用到的二级域名，包括(假设一级域名为yourdomain.com，需改为你的真实域名)：
+### 解析要使用到的二级域名，包括(假设一级域名为yourdomain.com，需改为你的真实域名)：
 
 　　backend.yourdomain.com
   
@@ -79,6 +79,12 @@
 
 `cp .env.example .env`  #根据自己的情况，修改相应配置，详见下面的提示
 
+**注意：**
+
+1、必须在项目初始化之前修改/path/to/docker-compose/.env文件，项目初始化之后再来修改可能会不生效，除非停止并删除容器、删除数据库文件（docker-compose/data/mysql/*、docker-compose/data/redis/*；注：若需要push到git仓库，则不应删除两个目录中的.gitignore文件）、删除install.lock文件（docker-compose/services/mochat_init/install.lock）、删除缓存（mochat/api-server/runtime/*），然后重新构建容器（docker-compose build）、启动容器（docker-compose up）才能生效。
+
+2、项目初始化：在执行docker-compose build构建完相关容器后，第一次执行docker-compose up时会对项目进行一次初始化，初始化完成后，会生成docker-compose/services/mochat_init/install.lock文件，之后再次执行docker-compose up时，mochat_init容器运行时检测到存在该install.lock文件的话，则不会再进行初始化，除非删除该install.lock文件。
+
 ```
 # 如下端口部分，如果使用默认端口，则无需修改
 
@@ -116,13 +122,6 @@ OPERATION_URL=operation.yourdomain.com
 API_SERVER_URL=backend.yourdomain.com
 ```
 
-**注意：**
-
-1、必须在项目初始化之前修改/path/to/docker-compose/.env文件，项目初始化之后再来修改可能会不生效，除非停止并删除容器、删除数据库文件（docker-compose/data/mysql/*、docker-compose/data/redis/*；注：若需要push到git仓库，则不应删除两个目录中的.gitignore文件）、删除install.lock文件（docker-compose/services/mochat_init/install.lock）、删除缓存（mochat/api-server/runtime/*），然后重新构建容器（docker-compose build）、启动容器（docker-compose up）才能生效。
-
-2、项目初始化：在执行docker-compose build构建完相关容器后，第一次执行docker-compose up时会对项目进行一次初始化，初始化完成后，会生成docker-compose/services/mochat_init/install.lock文件，之后再次执行docker-compose up时，mochat_init容器运行时检测到存在该install.lock文件的话，则不会再进行初始化，除非删除该install.lock文件。
-
-
 `cp docker-compose.sample.yml docker-compose.yml`  #默认无需修改，尽量不要修改该文件
 
 
@@ -159,7 +158,7 @@ docker-compose up -d
   
 这属于正常现象，不属于错误；并且这四个容器必须都显示“exited with code 0”或“Exited (0)”之后，才能正常访问并登录MoChat系统。
 
-这是因为，mochat_init容器仅用于初始化MoChat系统，而dashboard容器、sidebar容器、operation容器仅用于编译MoChat系统的前端文件，编译完之后(编译后的文件保存在新创建的mochat/dashboard/dist目录下；而mochat/dashboard/目录已被挂载到了nginx容器的/opt/www/dashboard/目录)，这些容器即会终止运行；换言之，这些容器终止运行之后才表明前端文件编译完成了，这时候MoChat系统才可以正常接受访问。
+这是因为，mochat_init容器仅用于初始化MoChat系统，而dashboard容器、sidebar容器、operation容器仅用于编译MoChat系统的前端文件，编译完之后(编译后的文件保存在新创建的mochat/dashboard/dist目录下；mochat/dashboard/目录被挂载到了nginx容器的/opt/www/dashboard/目录)，这些容器即会终止运行；换言之，这些容器终止运行之后才表明前端文件编译完成了，这时候MoChat系统才可以正常接受访问。
 
 成功启动运行的时间根据主机配置、网络速度等因素的不同，时间可能会比较长，请耐心等待。
 
@@ -186,7 +185,6 @@ rm ./services/mochat_init/install.lock
 docker-compose up mochat_init
 ```
 
-
 **特别注意：**
 
 mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env，这三个.env文件默认一般无需修改，会在初始化过程中使用docker-compose/.env中的设置自动修改。
@@ -203,14 +201,18 @@ mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env，这三个.
 3、再次执行docker-compose up即可。
 
 
-## 五、更新
+## 五、热更新
 
-- 后端PHP热更新，可以 `./servers/php/Dockerfile` 内改 `php /opt/www/bin/hyperf.php start` 为 `php /opt/www/bin/hyperf.php server:watch`
-- 前端热更新建议在宿主机 `npm run dev`，接口调试地址为 `http://api.mochat.com`
+如果你需要进行二次开发，为了实现自动监控文件而实时反映改动，可按如下方法更改。
+
+后端PHP热更新，可在 `./servers/php/Dockerfile` 文件内将 `php /opt/www/bin/hyperf.php start` 改为 `php /opt/www/bin/hyperf.php server:watch`
+
+前端热更新建议在宿主机 `npm run dev`，接口调试地址为 `http://backend.yourdomain.com`。
 
 ## 六、访问
 
-- 在浏览器输入 http://scrm.mochat.com
-- 默认的用户名密码: `18888888888` / `123456`
-- 进入项目，在`系统设置` -> `授权管理` 中点击 `添加企业微信号`
-- 如果您没有企业微信号，您可以到企业微信官网网站注册调试用的`企业微信号`
+在浏览器输入：http://dashboard.yourdomain.com
+
+输入你前面在docker-compose/.env文件设置的用户名和密码（如果你未修改，则默认为: `18888888888` / `123456`）
+
+进入项目，在`系统设置` -> `授权管理` 中点击 `添加企业微信号`（如果您没有企业微信号，您可以到企业微信官网网站注册调试用的`企业微信号`）

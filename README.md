@@ -187,14 +187,17 @@ mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env，这三个.
 
 手动修改步骤如下：
 
-1、先停止所有MoChat相关容器：如果之前是在宿主机前台运行的话，则执行快捷键ctrl+c即可，否则需要执行：docker-compose stop backend nginx mysql redis；
+1、先停止所有MoChat相关容器：如果之前是在宿主机前台运行的话，则执行快捷键ctrl+c即可，否则需要执行：
+```
+　　docker-compose stop backend nginx mysql redis；
+```
 
-2、依次打开mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env文件，将VUE_APP_API_BASE_URL的值修改为：http://backend.yourdomain.com:9501 (如果你前面修改为了其他端口，则使用修改的端口），如下：
+2、依次打开mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env文件，将`VUE_APP_API_BASE_URL`的值修改为：`http://backend.yourdomain.com:9501 `(如果你前面修改为了其他端口，则使用修改的端口），如下：
 ```　　
 　　VUE_APP_API_BASE_URL=http://backend.yourdomain.com:9501
 ```
 
-3、再次执行docker-compose up或docker-compose up -d即可。
+3、再次执行`docker-compose up`或`docker-compose up -d`即可。
 
 
 ## 五、热更新
@@ -208,8 +211,8 @@ mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env，这三个.
 
 ## 六、访问
 
-在浏览器输入：http://dashboard.yourdomain.com
+在浏览器输入：`http://dashboard.yourdomain.com`。
 
-输入你之前在docker-compose/.env文件设置的用户名和密码（如果你未修改，则默认为: `18888888888` / `123456`）
+输入你之前在docker-compose/.env文件设置的用户名和密码（如果你未修改，则默认为: `18888888888` / `123456`）。
 
-进入项目，在`系统设置` -> `授权管理` 中点击 `添加企业微信号`（如果您没有企业微信号，您可以到企业微信官网网站注册调试用的`企业微信号`）
+进入项目，在`系统设置` -> `授权管理` 中点击 `添加企业微信号`（如果您没有企业微信号，您可以到企业微信官网网站注册调试用的`企业微信号`）。

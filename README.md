@@ -1,20 +1,43 @@
-# 环境准备
-## 一、前置
-依赖
-* docker，docker-compose
-* wget -c https://github.com/mochat-cloud/mochat.git
-* wget -c https://github.com/mochat-cloud/docker-compose.git
+## 一、前提条件
+
+* 已安装：docker、docker-compose
+　　注：如果未安装docker、docker-compose，可使用[docker一键安装脚本](https://github.com/aben1188/docker-install-sh)进行安装。
+  
+* 克隆下载下面两个git仓库
+　　git clone https://github.com/mochat-cloud/mochat.git
+　　　或使用github国内源加速下载：git clone https://github.com.cnpmjs.org/mochat-cloud/mochat.git
+　　git clone https://github.com/mochat-cloud/docker-compose.git
+　　　或使用github国内源加速下载：git clone https://github.com.cnpmjs.org/mochat-cloud/docker-compose.git
+
+* 解析要使用到的二级域名，包括(假设一级域名为yourdomain.com，需改为你的真实域名)：
+　　backend.yourdomain.com
+　　dashboard.yourdomain.com
+　　operation.yourdomain.com
+　　sidebar.yourdomain.com
+
+* 在宿主机安全组和防火墙中放行如下端口：
+　　80（NGINX_HTTP_HOST_PORT）
+　　443（NGINX_HTTPS_HOST_PORT）
+　　3306（MYSQL_HOST_PORT）
+　　6379（REDIS_HOST_PORT）
+　　9501（PHP_HYPERF_PORT）
+　　注：
+　　　　1、如果宿主机的相应端口已被占用，请修改为未占用端口；
+　　　　2、如果http协议默认的80端口、https协议默认的443端口修改为了其他端口，访问时切记带上端口，比如：将80端口改为了8080端口，则访问时应为：http://dashboard.yourdomain.com:8080。
 
 ```
 注意：
-1、mac版docker.desktop版本推荐3.0以上，以避免内存飙高问题
-2、我们假定两个项目为同级目录，如下
-mochat-cloud/mochat 下载目录为 /path/to/mochat；
-mochat-cloud/docker-compose 下载目录为 /path/to/docker-compose；
 
+　　1、mac版docker.desktop版本推荐3.0以上，以避免内存飙高问题；
+  
+　　2、两个项目必须克隆下载到同一个目录下：
+　　　　mochat-cloud/mochat 下载目录为 /path/to/mochat；
+　　　　mochat-cloud/docker-compose 下载目录为 /path/to/docker-compose。
 ```
 
+
 ## 二、配置
+
 ### 2.1 docker-compose 配置
 - `cd /path/to/docker-compose`
 - `cp .env.example .env`，根据自己的项目，修改相应配置

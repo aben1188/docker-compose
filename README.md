@@ -27,7 +27,7 @@
 　　mochat-cloud/docker-compose 下载目录为 /path/to/docker-compose。
 
 
-### 解析要使用到的二级域名，包括(假设一级域名为yourdomain.com，需改为你的真实域名)：
+### 解析要使用到的二级域名(假设一级域名为yourdomain.com，需改为你的真实域名)
 
 　　backend.yourdomain.com  
 　　dashboard.yourdomain.com  
@@ -54,7 +54,7 @@
 
 4、使用非本地容器MySQL时，可以设置MYSQL_CONNECT_TYPE=cloud，并修改CLOUD_MYSQL_*相应属性即可。
 
-### 在宿主机安全组和防火墙中放行如下端口：
+### 在宿主机安全组和防火墙中放行端口
 
 　　80（用于NGINX_HTTP_HOST_PORT）  
 　　443（用于NGINX_HTTPS_HOST_PORT）  

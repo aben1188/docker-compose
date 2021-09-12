@@ -1,6 +1,6 @@
-## 一、前提条件
+## 一、准备工作
 
-### 安装：docker、docker-compose
+### 安装docker、docker-compose
 
 　　可使用[docker一键安装脚本](https://github.com/aben1188/docker-install-sh)进行安装。
   

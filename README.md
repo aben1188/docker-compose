@@ -1,12 +1,17 @@
 ## 一、前提条件
 
 * 已安装：docker、docker-compose
+
 注：如果未安装docker、docker-compose，可使用[docker一键安装脚本](https://github.com/aben1188/docker-install-sh)进行安装。
   
 * 克隆下载下面两个git仓库
+
 git clone https://github.com/mochat-cloud/mochat.git
+
 （或使用github国内源加速下载：git clone https://github.com.cnpmjs.org/mochat-cloud/mochat.git）
+
 git clone https://github.com/mochat-cloud/docker-compose.git
+
 （或使用github国内源加速下载：git clone https://github.com.cnpmjs.org/mochat-cloud/docker-compose.git）
 
 * 解析要使用到的二级域名，包括(假设一级域名为yourdomain.com，需改为你的真实域名)：

@@ -27,7 +27,9 @@
 　　mochat-cloud/docker-compose 下载目录为 /path/to/docker-compose。
 
 
-### 解析要使用到的二级域名(假设一级域名为yourdomain.com，需改为你的真实域名)
+### 解析要使用到的二级域名
+
+　　**注：** 这里假设一级域名为yourdomain.com，需修改为你自己的真实域名。
 
 　　backend.yourdomain.com  
 　　dashboard.yourdomain.com  
@@ -48,9 +50,9 @@
 　　　　Windows系统：C:\Windows\System32\drivers\etc\hosts  
 　　　　类Unix系统(Linux、Mac、iOS、Android等)：/etc/hosts  
 　　      
-2、api.mo.chat为占用域名，请避免使用。
+2、api.mo.chat为系统占用域名，请避免使用。
   
-3、dev与.app域名为chrome域名，使用chrome时请避免使用；
+3、.dev与.app域名为chrome浏览器独家使用域名，使用chrome浏览器时请避免使用；
 
 4、使用非本地容器MySQL时，可以设置MYSQL_CONNECT_TYPE=cloud，并修改CLOUD_MYSQL_\*相应属性即可。
 

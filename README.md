@@ -155,8 +155,6 @@ docker-compose up
 docker-compose up -d
 ```
 
-**注意：**
-
 执行`docker-compose up`时，dashboard、sidebar、operation、mochat_init容器运行完后会自动退出，显示如下信息：
 ```
 dashboard exited with code 0
@@ -193,7 +191,7 @@ rm ./services/mochat_init/install.lock
 docker-compose up mochat_init
 ```
 
-**特别注意：**
+**注意：**
 
 `mochat/dashboard/.env`、`mochat/sidebar/.env`和`mochat/operation/.env`，这三个.env文件默认一般无需修改，会在初始化过程中使用`docker-compose/.env`中的设置自动修改。
 

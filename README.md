@@ -146,7 +146,7 @@ docker-compose up
 
 执行上述命令后，将在宿主机前台运行；如果需要终止运行，可以使用快捷键`ctrl+c`。
 
-如果需要在宿主机后台运行，则可以加上-d参数（在后台运行将无法实时看到运行情况，建议在刚开始时不要在后台运行，待确认运行无误后再在后台运行）：
+如果需要在宿主机后台运行，则可以加上-d参数（在后台运行将无法实时看到运行情况，建议在刚开始时不要在后台运行，待确认运行无误后再改为后台运行）：
 
 ```
 docker-compose up -d
@@ -182,7 +182,7 @@ redis         docker-entrypoint.sh redis ...   Up       0.0.0.0:6379->6379/tcp
 sidebar       /bin/sh -c sh -c "yarn ins ...   Exit 0
 ```
 
-如果初始化失败，可重新初始化。
+如果初始化失败，可执行如下命令重新初始化。
 
 ```
 cd /path/to/docker-compose
@@ -217,17 +217,17 @@ docker-compose up mochat_init
 
 如果你需要进行二次开发，为了实现自动监控文件而实时反映改动，可按如下方法更改。
 
-**后端PHP热更新：** 可在 `docker-compose/services/php/Dockerfile` 文件内将 `php /opt/www/bin/hyperf.php start` 改为 `php /opt/www/bin/hyperf.php server:watch`。
+**后端PHP热更新：** 可在`docker-compose/services/php/Dockerfile`文件内将`php /opt/www/bin/hyperf.php start`改为`php /opt/www/bin/hyperf.php server:watch`。
 
-**前端热更新：** 建议在宿主机 `npm run dev`，接口调试地址为 `http://backend.yourdomain.com`。
+**前端热更新：** 建议在宿主机执行`npm run dev`，接口调试地址为：`http://backend.yourdomain.com`。
 
-**注意：** 这里的热更新仅限于你在本地开发时的自动更新，MoChat官方升级更新，请参照[官方文档中的升级说明](https://mochat.wiki/upgrade/)进行。
+**注意：** 这里的热更新仅限于你在本地开发时的自动更新，升级更新为MoChat官方的最新版本，请参照[官方文档中的升级说明](https://mochat.wiki/upgrade/)进行。
 
 
 ## 六、访问
 
 在浏览器输入：`http://dashboard.yourdomain.com`，正常的话，你应该可以看到MoChat系统的登录界面。
 
-输入你之前在`docker-compose/.env`文件设置的用户名和密码（如果你未修改，则默认为: `18888888888` / `123456`）。
+输入你之前在`docker-compose/.env`文件设置的用户名和密码（如果你未修改，则默认为: `18888888888` / `123456`）进行登录。
 
-进入项目，在`系统设置` -> `授权管理` 中点击 `添加企业微信号`（如果您没有企业微信号，您可以到企业微信官网网站注册调试用的`企业微信号`）。
+成功登录之后，在`系统设置` -> `授权管理` 中点击 `添加企业微信号`（如果您没有企业微信号，您可以到企业微信官网网站注册调试用的`企业微信号`）。

@@ -89,7 +89,7 @@
 2、项目初始化：在执行`docker-compose build`构建完相关容器后，第一次执行`docker-compose up`时会对项目进行一次初始化，初始化完成后，会生成`docker-compose/services/mochat_init/install.lock`文件，之后再次执行`docker-compose up`时，mochat_init容器运行时检测到存在该install.lock文件的话，则不会再进行初始化，除非删除该install.lock文件。
 
 ```
-# 如下端口部分，如果使用默认端口，则无需修改
+# 以下端口部分，如果使用默认端口，则无需修改
 
 # 宿主机映射到nginx容器的http协议端口
 NGINX_HTTP_HOST_PORT=80

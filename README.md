@@ -8,13 +8,13 @@
 
 　　**注：** 由于本人修改了`docker-compose/services/mochat_init/Dockerfile`文件（其中`RUN apk --no-cache add netcat-openbsd`这句在构建镜像时会出错），暂时又未能合并到MoChat官方仓库，因此请克隆下载本人修改后的如下仓库。
 
-　　git clone https://github.com/aben1188/mochat.git
+　　`git clone https://github.com/aben1188/mochat.git`
 
-　　　　或使用github国内源加速下载：git clone https://github.com.cnpmjs.org/aben1188/mochat.git
+　　　　或使用github国内源加速下载：`git clone https://github.com.cnpmjs.org/aben1188/mochat.git`
 
-　　git clone https://github.com/aben1188/docker-compose.git
+　　`git clone https://github.com/aben1188/docker-compose.git`
 
-　　　　或使用github国内源加速下载：git clone https://github.com.cnpmjs.org/aben1188/docker-compose.git
+　　　　或使用github国内源加速下载：`git clone https://github.com.cnpmjs.org/aben1188/docker-compose.git`
     
 **注意：**
 
@@ -29,7 +29,7 @@
 
 ### 解析要使用到的二级域名
 
-　　**注：** 这里假设一级域名为yourdomain.com，需修改为你自己的真实域名。
+　　**注：** 这里假设一级域名为`yourdomain.com`，需修改为你自己的真实域名。
 
 　　backend.yourdomain.com  
 　　dashboard.yourdomain.com  
@@ -39,11 +39,12 @@
 **注意：**
 
 1、如果你仅在本地浏览(即本机浏览)，则无需解析，直接在系统hosts文件中添加如下内容即可(推荐使用SwitchHosts来修改hosts)：
-  
+```  
 　　127.0.0.1 backend.yourdomain.com  
 　　127.0.0.1 dashboard.yourdomain.com  
 　　127.0.0.1 operation.yourdomain.com  
 　　127.0.0.1 sidebar.yourdomain.com
+```
 
 　　hosts文件在各操作系统中的路径：
   
@@ -57,12 +58,13 @@
 4、使用非本地容器MySQL时，可以设置MYSQL_CONNECT_TYPE=cloud，并修改CLOUD_MYSQL_\*相应属性即可。
 
 ### 在宿主机安全组和防火墙中放行端口
-
+```
 　　80（用于NGINX_HTTP_HOST_PORT）  
 　　443（用于NGINX_HTTPS_HOST_PORT）  
 　　3306（用于MYSQL_HOST_PORT）  
 　　6379（用于REDIS_HOST_PORT）  
 　　9501（用于PHP_HYPERF_PORT）
+```
 
 **注意：**
 
@@ -70,7 +72,7 @@
 
 2、如果宿主机的相应端口已被占用，请修改为未占用端口；
     
-3、如果http协议默认的80端口、https协议默认的443端口修改为了其他端口，访问时切记带上端口，比如：将80端口改为了8080端口，则访问时应为：http://dashboard.yourdomain.com:8080。
+3、如果http协议默认的80端口、https协议默认的443端口修改为了其他端口，访问时切记带上端口，比如：将80端口改为了8080端口，则访问时应为：`http://dashboard.yourdomain.com:8080`。
 
 
 ## 二、修改配置
@@ -81,9 +83,9 @@
 
 **注意：**
 
-1、必须在项目初始化之前修改/path/to/docker-compose/.env文件，项目初始化之后再来修改可能会不生效，除非停止并删除容器、删除数据库文件（docker-compose/data/mysql/\*、docker-compose/data/redis/\*；注：若需要push到git仓库，则不应删除两个目录中的.gitignore文件）、删除install.lock文件（docker-compose/services/mochat_init/install.lock）、删除缓存（mochat/api-server/runtime/\*），然后重新构建容器（docker-compose build）、启动容器（docker-compose up）才能生效。
+1、必须在项目初始化之前修改`docker-compose/.env`文件，项目初始化之后再来修改可能会不生效，除非停止并删除容器、删除数据库文件（`docker-compose/data/mysql/\*`、`docker-compose/data/redis/\*`；注：若需要push到git仓库，则不应删除两个目录中的.gitignore文件）、删除install.lock文件（`docker-compose/services/mochat_init/install.lock`）、删除缓存（`mochat/api-server/runtime/\*`），然后重新构建容器（`docker-compose build`）、启动容器（`docker-compose up`）才能生效。
 
-2、项目初始化：在执行docker-compose build构建完相关容器后，第一次执行docker-compose up时会对项目进行一次初始化，初始化完成后，会生成docker-compose/services/mochat_init/install.lock文件，之后再次执行docker-compose up时，mochat_init容器运行时检测到存在该install.lock文件的话，则不会再进行初始化，除非删除该install.lock文件。
+2、项目初始化：在执行`docker-compose build`构建完相关容器后，第一次执行`docker-compose up`时会对项目进行一次初始化，初始化完成后，会生成`docker-compose/services/mochat_init/install.lock`文件，之后再次执行`docker-compose up`时，mochat_init容器运行时检测到存在该install.lock文件的话，则不会再进行初始化，除非删除该install.lock文件。
 
 ```
 # 如下端口部分，如果使用默认端口，则无需修改
@@ -142,7 +144,7 @@ cd /path/to/docker-compose
 docker-compose up
 ```
 
-执行上述命令后，将在宿主机前台运行；如果需要终止运行，可以使用快捷键：ctrl+c。
+执行上述命令后，将在宿主机前台运行；如果需要终止运行，可以使用快捷键`ctrl+c`。
 
 如果需要在宿主机后台运行，则可以加上-d参数（在后台运行将无法实时看到运行情况，建议在刚开始时不要在后台运行，待确认运行无误后再在后台运行）：
 
@@ -152,7 +154,7 @@ docker-compose up -d
 
 **注意：**
 
-执行docker-compose up时，dashboard、sidebar、operation、mochat_init容器运行完后会自动退出，显示如下信息：
+执行`docker-compose up`时，dashboard、sidebar、operation、mochat_init容器运行完后会自动退出，显示如下信息：
 ```
 　　dashboard exited with code 0
 　　sidebar exited with code 0
@@ -190,18 +192,18 @@ docker-compose up mochat_init
 
 **特别注意：**
 
-mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env，这三个.env文件默认一般无需修改，会在初始化过程中使用docker-compose/.env中的设置自动修改。
+`mochat/dashboard/.env`、`mochat/sidebar/.env`和`mochat/operation/.env`，这三个.env文件默认一般无需修改，会在初始化过程中使用`docker-compose/.env`中的设置自动修改。
 
-不过需要特别注意的是，其中api-server的端口默认被错误地设置为了nginx服务的宿主机映射端口(比如80)，而非backend服务的宿主机映射端口(比如9501)，因此仍需进行手动修改该端口，否则，会等同于访问：backend.yourdomain.com，你将会只能看到“Hello Mochat”，而无法看到MoChat系统的登录界面。
+不过需要特别注意的是，其中api-server的端口默认被错误地设置为了nginx服务的宿主机映射端口(比如8080)，而非backend服务的宿主机映射端口(比如9501)，因此仍需进行手动修改该端口，否则，会等同于访问：`backend.yourdomain.com`，你将会只能看到“Hello Mochat”，而无法看到MoChat系统的登录界面。
 
 手动修改步骤如下：
 
-1、先停止所有MoChat相关容器：如果之前是在宿主机前台运行的话，则执行快捷键ctrl+c即可，否则需要执行：
+1、先停止所有MoChat相关容器：如果之前是在宿主机前台运行的话，则执行快捷键`ctrl+c`即可，否则需要执行：
 ```
 　　docker-compose stop backend nginx mysql redis
 ```
 
-2、依次打开mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env文件，将`VUE_APP_API_BASE_URL`的值修改为：`http://backend.yourdomain.com:9501 `(如果你前面修改为了其他端口，则使用修改后的端口），如下：
+2、依次打开`mochat/dashboard/.env`、`mochat/sidebar/.env`和`mochat/operation/.env`文件，将`VUE_APP_API_BASE_URL`的值修改为：`http://backend.yourdomain.com:9501 `(如果你前面修改为了其他端口，则使用修改后的端口），如下：
 ```　　
 　　VUE_APP_API_BASE_URL=http://backend.yourdomain.com:9501
 ```
@@ -222,6 +224,6 @@ mochat/dashboard/.env、mochat/sidebar/.env和mochat/operation/.env，这三个.
 
 在浏览器输入：`http://dashboard.yourdomain.com`。
 
-输入你之前在docker-compose/.env文件设置的用户名和密码（如果你未修改，则默认为: `18888888888` / `123456`）。
+输入你之前在`docker-compose/.env`文件设置的用户名和密码（如果你未修改，则默认为: `18888888888` / `123456`）。
 
 进入项目，在`系统设置` -> `授权管理` 中点击 `添加企业微信号`（如果您没有企业微信号，您可以到企业微信官网网站注册调试用的`企业微信号`）。

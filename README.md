@@ -18,7 +18,7 @@
     
 **注意：**
 
-1、mac版docker.desktop版本推荐3.0以上，以避免内存飙高问题；
+1、mac版`docker.desktop`版本推荐3.0以上，以避免内存飙高问题；
   
 2、两个仓库必须克隆下载到同一个目录下：
 
@@ -30,12 +30,13 @@
 ### 解析要使用到的二级域名
 
 　　**注：** 这里假设一级域名为`yourdomain.com`，需修改为你自己的真实域名。
-
+```
 　　backend.yourdomain.com  
 　　dashboard.yourdomain.com  
 　　operation.yourdomain.com  
 　　sidebar.yourdomain.com
-  
+```
+
 **注意：**
 
 1、如果你仅在本地浏览(即本机浏览)，则无需解析，直接在系统hosts文件中添加如下内容即可(推荐使用SwitchHosts来修改hosts)：

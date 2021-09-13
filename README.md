@@ -20,7 +20,7 @@
 
 1、mac版docker.desktop版本推荐3.0以上，以避免内存飙高问题；
   
-2、两个项目必须克隆下载到同一个目录下：
+2、两个仓库必须克隆下载到同一个目录下：
 
 　　mochat-cloud/mochat 下载目录为 /path/to/mochat；
   

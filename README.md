@@ -2,19 +2,19 @@
 
 ### 安装docker、docker-compose
 
-　　可使用[docker一键安装脚本](https://github.com/aben1188/docker-install-sh)进行安装。
+可使用[docker一键安装脚本](https://github.com/aben1188/docker-install-sh)进行安装。
   
 ### 克隆下载下面两个git仓库
 
-　　**注：** 由于本人修改了`docker-compose/services/mochat_init/Dockerfile`文件（其中`RUN apk --no-cache add netcat-openbsd`这句在构建镜像时会出错），暂时又未能合并到MoChat官方仓库，因此请克隆下载本人修改后的如下仓库。
+**注：** 由于本人修改了`docker-compose/services/mochat_init/Dockerfile`文件（其中`RUN apk --no-cache add netcat-openbsd`这句在构建镜像时会出错），暂时又未能合并到MoChat官方仓库，因此请克隆下载本人修改后的如下仓库。
 
-　　`git clone https://github.com/aben1188/mochat.git`
+`git clone https://github.com/aben1188/mochat.git`
 
-　　　　或使用github国内源加速下载：`git clone https://github.com.cnpmjs.org/aben1188/mochat.git`
+　　或使用github国内源加速下载：`git clone https://github.com.cnpmjs.org/aben1188/mochat.git`
 
-　　`git clone https://github.com/aben1188/docker-compose.git`
+`git clone https://github.com/aben1188/docker-compose.git`
 
-　　　　或使用github国内源加速下载：`git clone https://github.com.cnpmjs.org/aben1188/docker-compose.git`
+　　或使用github国内源加速下载：`git clone https://github.com.cnpmjs.org/aben1188/docker-compose.git`
     
 **注意：**
 
@@ -29,28 +29,28 @@
 
 ### 解析要使用到的二级域名
 
-　　这里假设一级域名为`yourdomain.com`，需修改为你自己的真实域名。
+这里假设一级域名为`yourdomain.com`，需修改为你自己的真实域名。
 ```
-　　backend.yourdomain.com  （用于后端api接口服务）
-　　dashboard.yourdomain.com  （用于管理后台）
-　　operation.yourdomain.com  （用于营销工具）
-　　sidebar.yourdomain.com  （用于侧边栏）
+backend.yourdomain.com  （用于后端api接口服务）
+dashboard.yourdomain.com  （用于管理后台）
+operation.yourdomain.com  （用于营销工具）
+sidebar.yourdomain.com  （用于侧边栏）
 ```
 
 **注意：**
 
 1、如果你仅在本地浏览(即本机浏览)，则无需解析，直接在系统hosts文件中添加如下内容即可(推荐使用SwitchHosts来修改hosts)：
 ```  
-　　127.0.0.1 backend.yourdomain.com  
-　　127.0.0.1 dashboard.yourdomain.com  
-　　127.0.0.1 operation.yourdomain.com  
-　　127.0.0.1 sidebar.yourdomain.com
+127.0.0.1 backend.yourdomain.com  
+127.0.0.1 dashboard.yourdomain.com  
+127.0.0.1 operation.yourdomain.com  
+127.0.0.1 sidebar.yourdomain.com
 ```
 
-　　hosts文件在各操作系统中的路径：
+hosts文件在各操作系统中的路径：
   
-　　　　Windows系统：`C:\Windows\System32\drivers\etc\hosts`  
-　　　　类Unix系统(Linux、Mac、iOS、Android等)：`/etc/hosts`  
+　　Windows系统：`C:\Windows\System32\drivers\etc\hosts`  
+　　类Unix系统(Linux、Mac、iOS、Android等)：`/etc/hosts`  
 　　      
 2、api.mo.chat为系统占用域名，请避免使用。
   
@@ -60,11 +60,11 @@
 
 ### 在宿主机安全组和防火墙中放行端口
 ```
-　　80（用于NGINX_HTTP_HOST_PORT）  
-　　443（用于NGINX_HTTPS_HOST_PORT）  
-　　3306（用于MYSQL_HOST_PORT）  
-　　6379（用于REDIS_HOST_PORT）  
-　　9501（用于PHP_HYPERF_PORT）
+80（用于NGINX_HTTP_HOST_PORT）  
+443（用于NGINX_HTTPS_HOST_PORT）  
+3306（用于MYSQL_HOST_PORT）  
+6379（用于REDIS_HOST_PORT）  
+9501（用于PHP_HYPERF_PORT）
 ```
 
 **注意：**
@@ -156,10 +156,10 @@ docker-compose up -d
 
 执行`docker-compose up`时，dashboard、sidebar、operation、mochat_init容器运行完后会自动退出，显示如下信息：
 ```
-　　dashboard exited with code 0
-　　sidebar exited with code 0
-　　operation exited with code 0
-　　mochat_init exited with code 0
+dashboard exited with code 0
+sidebar exited with code 0
+operation exited with code 0
+mochat_init exited with code 0
 ```
 这属于正常现象，不属于错误；并且这四个容器必须都显示“exited with code 0”或“Exited (0)”之后，才能正常访问并登录MoChat系统。
 
@@ -170,7 +170,7 @@ docker-compose up -d
 ```
 docker-compose ps  
 
-   Name                  Command               State                     Ports                  
+Name          Command                          State    Ports                  
 ------------------------------------------------------------------------------------------------
 backend       /bin/sh -c sh -c "composer ...   Up       0.0.0.0:9501->9501/tcp                  
 dashboard     /bin/sh -c sh -c "yarn ins ...   Exit 0        
@@ -200,12 +200,12 @@ docker-compose up mochat_init
 
 1、先停止所有MoChat相关容器：如果之前是在宿主机前台运行的话，则执行快捷键`ctrl+c`即可，否则需要执行：
 ```
-　　docker-compose stop backend nginx mysql redis
+docker-compose stop backend nginx mysql redis
 ```
 
 2、依次打开`mochat/dashboard/.env`、`mochat/sidebar/.env`和`mochat/operation/.env`文件，将`VUE_APP_API_BASE_URL`的值修改为：`http://backend.yourdomain.com:9501 `(如果你前面修改为了其他端口，则使用修改后的端口），如下：
 ```　　
-　　VUE_APP_API_BASE_URL=http://backend.yourdomain.com:9501
+VUE_APP_API_BASE_URL=http://backend.yourdomain.com:9501
 ```
 
 3、再次执行`docker-compose up`或`docker-compose up -d`即可。

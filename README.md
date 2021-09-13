@@ -211,6 +211,8 @@ docker-compose up mochat_init
 
 3、再次执行`docker-compose up`或`docker-compose up -d`即可。
 
+期待官方早点将这个错误修正过来，这样将可以省略上述步骤。
+
 
 ## 五、热更新
 
@@ -220,12 +222,12 @@ docker-compose up mochat_init
 
 前端热更新建议在宿主机 `npm run dev`，接口调试地址为 `http://backend.yourdomain.com`。
 
-**注意：** 这里的热更新仅限于你在本地开发时的自动更新，MoChat官方升级更新，请参照[官方文档中的升级说明](https://mochat.wiki/upgrade/)。
+**注意：** 这里的热更新仅限于你在本地开发时的自动更新，MoChat官方升级更新，请参照[官方文档中的升级说明](https://mochat.wiki/upgrade/)进行。
 
 
 ## 六、访问
 
-在浏览器输入：`http://dashboard.yourdomain.com`。
+在浏览器输入：`http://dashboard.yourdomain.com`，正常的话，你应该可以看到MoChat系统的登录界面。
 
 输入你之前在`docker-compose/.env`文件设置的用户名和密码（如果你未修改，则默认为: `18888888888` / `123456`）。
 

@@ -29,7 +29,7 @@
 
 ### 解析要使用到的二级域名
 
-　　**注：** 这里假设一级域名为`yourdomain.com`，需修改为你自己的真实域名。
+　　这里假设一级域名为`yourdomain.com`，需修改为你自己的真实域名。
 ```
 　　backend.yourdomain.com  （用于后端api接口服务）
 　　dashboard.yourdomain.com  （用于管理后台）

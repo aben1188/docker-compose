@@ -168,7 +168,7 @@ docker-compose up -d
 ```
 这属于正常现象，不属于错误；并且这四个容器必须都显示“exited with code 0”或“Exited (0)”之后，才能正常访问并登录MoChat系统。
 
-这是因为，mochat_init容器仅用于初始化MoChat系统，而dashboard容器、sidebar容器、operation容器仅用于编译MoChat系统的前端文件，编译完之后这些容器即会终止运行；换言之，这些容器终止运行之后才表明前端文件编译完成了，这时候MoChat系统才可以正常接受访问。
+这是因为，mochat_init容器仅用于初始化MoChat系统，而dashboard容器、sidebar容器、operation容器仅用于编译MoChat系统的前端文件，编译完之后这些容器即会终止运行；换言之，这些容器终止运行之后才表明前端文件编译完成了，这时候MoChat系统才可以正常接受访问，否则将会显示500错误。
 
 成功启动运行的时间根据主机配置、网络速度等因素的不同，时间可能会比较长，请耐心等待。
 

@@ -22,9 +22,9 @@
   
 2、两个仓库必须克隆下载到同一个目录下：
 
-　　mochat-cloud/mochat 下载目录为 /path/to/mochat；
+　　`mochat-cloud/mochat` 下载目录为 `/path/to/mochat`；
   
-　　mochat-cloud/docker-compose 下载目录为 /path/to/docker-compose。
+　　`mochat-cloud/docker-compose` 下载目录为 `/path/to/docker-compose`。
 
 
 ### 解析要使用到的二级域名
@@ -48,14 +48,14 @@
 
 　　hosts文件在各操作系统中的路径：
   
-　　　　Windows系统：C:\Windows\System32\drivers\etc\hosts  
-　　　　类Unix系统(Linux、Mac、iOS、Android等)：/etc/hosts  
+　　　　Windows系统：`C:\Windows\System32\drivers\etc\hosts`  
+　　　　类Unix系统(Linux、Mac、iOS、Android等)：`/etc/hosts`  
 　　      
 2、api.mo.chat为系统占用域名，请避免使用。
   
 3、.dev与.app域名为chrome浏览器独家使用域名，使用chrome浏览器时请避免使用；
 
-4、使用非本地容器MySQL时，可以设置MYSQL_CONNECT_TYPE=cloud，并修改CLOUD_MYSQL_\*相应属性即可。
+4、使用非本地容器MySQL时，可以设置`MYSQL_CONNECT_TYPE=cloud`，并修改`CLOUD_MYSQL_*`相应属性即可。
 
 ### 在宿主机安全组和防火墙中放行端口
 ```
@@ -83,7 +83,7 @@
 
 **注意：**
 
-1、必须在项目初始化之前修改`docker-compose/.env`文件，项目初始化之后再来修改可能会不生效，除非停止并删除容器、删除数据库文件（`docker-compose/data/mysql/\*`、`docker-compose/data/redis/\*`；注：若需要push到git仓库，则不应删除两个目录中的.gitignore文件）、删除install.lock文件（`docker-compose/services/mochat_init/install.lock`）、删除缓存（`mochat/api-server/runtime/\*`），然后重新构建容器（`docker-compose build`）、启动容器（`docker-compose up`）才能生效。
+1、必须在项目初始化之前修改`docker-compose/.env`文件，项目初始化之后再来修改可能会不生效，除非停止并删除容器、删除数据库文件（`docker-compose/data/mysql/*`、`docker-compose/data/redis/*`；注：若需要push到git仓库，则不应删除两个目录中的.gitignore文件）、删除install.lock文件（`docker-compose/services/mochat_init/install.lock`）、删除缓存（`mochat/api-server/runtime/*`），然后重新构建容器（`docker-compose build`）、启动容器（`docker-compose up`）才能生效。
 
 2、项目初始化：在执行`docker-compose build`构建完相关容器后，第一次执行`docker-compose up`时会对项目进行一次初始化，初始化完成后，会生成`docker-compose/services/mochat_init/install.lock`文件，之后再次执行`docker-compose up`时，mochat_init容器运行时检测到存在该install.lock文件的话，则不会再进行初始化，除非删除该install.lock文件。
 
@@ -136,6 +136,7 @@ API_SERVER_URL=backend.yourdomain.com
 cd /path/to/docker-compose
 docker-compose build
 ```
+
 
 ## 四、运行容器
 
@@ -194,7 +195,7 @@ docker-compose up mochat_init
 
 `mochat/dashboard/.env`、`mochat/sidebar/.env`和`mochat/operation/.env`，这三个.env文件默认一般无需修改，会在初始化过程中使用`docker-compose/.env`中的设置自动修改。
 
-不过需要特别注意的是，其中api-server的端口默认被错误地设置为了nginx服务的宿主机映射端口(比如8080)，而非backend服务的宿主机映射端口(比如9501)，因此仍需进行手动修改该端口，否则，会等同于访问：`backend.yourdomain.com`，你将会只能看到“Hello Mochat”，而无法看到MoChat系统的登录界面。
+不过需要特别注意的是，其中api-server的端口默认被错误地设置为了nginx服务的宿主机映射端口(比如8080)，而非backend服务的宿主机映射端口(比如9501)，因此仍需手动修改该端口，否则，会等同于访问：`backend.yourdomain.com`，你将会只能看到“Hello Mochat”，而无法看到MoChat系统的登录界面。
 
 手动修改步骤如下：
 
@@ -218,6 +219,8 @@ docker-compose up mochat_init
 后端PHP热更新，可在 `./servers/php/Dockerfile` 文件内将 `php /opt/www/bin/hyperf.php start` 改为 `php /opt/www/bin/hyperf.php server:watch`
 
 前端热更新建议在宿主机 `npm run dev`，接口调试地址为 `http://backend.yourdomain.com`。
+
+**注意：** 这里的热更新仅限于你在本地开发时的自动更新，MoChat官方升级更新，请参照[官方文档中的升级说明](https://mochat.wiki/upgrade/)。
 
 
 ## 六、访问

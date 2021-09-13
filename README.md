@@ -111,23 +111,18 @@ MOCHAT_ADMIN=18888888888
 MOCHAT_PASSWORD=123456
 
 
-# 以下域名部分，如果你在本地浏览，则使用本地回环IP(127.0.0.1)即可
-# 否则，需修改为前面已解析过的相应域名
+# 以下域名部分，需修改为前面已解析过的相应域名
 
 # mochat.dashboard域名，不包含http://
-#DASHBOARD_URL=127.0.0.1
 DASHBOARD_URL=dashboard.yourdomain.com
 
 # mochat.sidebar域名，不包含http://
-#SIDEBAR_URL=127.0.0.1
 SIDEBAR_URL=sidebar.yourdomain.com
 
 # mochat.operation域名，不包含http://
-#OPERATION_URL=127.0.0.1
 OPERATION_URL=operation.yourdomain.com
 
 # mochat.api-server域名，不包含http://
-#API_SERVER_URL=127.0.0.1
 API_SERVER_URL=backend.yourdomain.com
 ```
 

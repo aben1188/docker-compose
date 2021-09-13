@@ -4,7 +4,7 @@
 
 可使用[docker一键安装脚本](https://github.com/aben1188/docker-install-sh)进行安装。
   
-### 克隆下载下面两个git仓库
+### 下载git仓库
 
 **注：** 由于本人修改了`docker-compose/services/mochat_init/Dockerfile`文件（其中`RUN apk --no-cache add netcat-openbsd`这句在构建镜像时会出错），暂时又未能合并到MoChat官方仓库，因此请克隆下载本人修改后的如下仓库。
 
@@ -27,7 +27,7 @@
 　　`mochat-cloud/docker-compose` 下载目录为 `/path/to/docker-compose`。
 
 
-### 解析要使用到的二级域名
+### 解析域名
 
 这里假设一级域名为`yourdomain.com`，需修改为你自己的真实域名。
 ```
@@ -58,7 +58,10 @@ hosts文件在各操作系统中的路径：
 
 4、使用非本地容器MySQL时，可以设置`MYSQL_CONNECT_TYPE=cloud`，并修改`CLOUD_MYSQL_*`相应属性即可。
 
-### 在宿主机安全组和防火墙中放行端口
+### 放行端口
+
+在宿主机安全组和防火墙中放行如下端口。
+
 ```
 80（用于NGINX_HTTP_HOST_PORT）  
 443（用于NGINX_HTTPS_HOST_PORT）  

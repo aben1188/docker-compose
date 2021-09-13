@@ -102,6 +102,7 @@ MYSQL_HOST_PORT=3306
 # 宿主机映射到redis容器的访问端口
 REDIS_HOST_PORT=6379
 
+
 # mochat超级管理员手机号，可修改为你自己的手机号
 MOCHAT_ADMIN=18888888888
 # mochat超级管理员密码，可修改为你自己的密码

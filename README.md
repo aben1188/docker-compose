@@ -220,9 +220,9 @@ docker-compose up mochat_init
 
 如果你需要进行二次开发，为了实现自动监控文件而实时反映改动，可按如下方法更改。
 
-后端PHP热更新，可在 `./services/php/Dockerfile` 文件内将 `php /opt/www/bin/hyperf.php start` 改为 `php /opt/www/bin/hyperf.php server:watch`
+**后端PHP热更新：** 可在 `./services/php/Dockerfile` 文件内将 `php /opt/www/bin/hyperf.php start` 改为 `php /opt/www/bin/hyperf.php server:watch`
 
-前端热更新建议在宿主机 `npm run dev`，接口调试地址为 `http://backend.yourdomain.com`。
+**前端热更新：** 建议在宿主机 `npm run dev`，接口调试地址为 `http://backend.yourdomain.com`。
 
 **注意：** 这里的热更新仅限于你在本地开发时的自动更新，MoChat官方升级更新，请参照[官方文档中的升级说明](https://mochat.wiki/upgrade/)进行。
 

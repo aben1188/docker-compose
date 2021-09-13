@@ -31,10 +31,10 @@
 
 　　**注：** 这里假设一级域名为`yourdomain.com`，需修改为你自己的真实域名。
 ```
-　　backend.yourdomain.com  
-　　dashboard.yourdomain.com  
-　　operation.yourdomain.com  
-　　sidebar.yourdomain.com
+　　backend.yourdomain.com  （用于后端api接口服务）
+　　dashboard.yourdomain.com  （用于管理后台）
+　　operation.yourdomain.com  （用于营销工具）
+　　sidebar.yourdomain.com  （用于侧边栏）
 ```
 
 **注意：**

@@ -155,7 +155,7 @@ docker-compose up
 docker-compose up -d
 ```
 
-执行`docker-compose up`时，dashboard、sidebar、operation、mochat_init容器运行完后会自动退出，显示如下信息：
+执行`docker-compose up`后，dashboard、sidebar、operation、mochat_init容器运行完后会自动退出，显示如下信息：
 ```
 dashboard exited with code 0
 sidebar exited with code 0

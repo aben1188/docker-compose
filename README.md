@@ -61,11 +61,11 @@ sidebar.yourdomain.com  （用于侧边栏）
 在宿主机安全组和防火墙中放行如下端口。
 
 ```
-80（用于NGINX_HTTP_HOST_PORT）  
-443（用于NGINX_HTTPS_HOST_PORT）  
-3306（用于MYSQL_HOST_PORT）  
-6379（用于REDIS_HOST_PORT）  
-9501（用于PHP_HYPERF_PORT）
+80 （用于NGINX_HTTP_HOST_PORT）  
+443 （用于NGINX_HTTPS_HOST_PORT）  
+3306 （用于MYSQL_HOST_PORT）  
+6379 （用于REDIS_HOST_PORT）  
+9501 （用于PHP_HYPERF_PORT）
 ```
 
 **注意：**

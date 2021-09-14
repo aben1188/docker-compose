@@ -6,11 +6,9 @@
   
 ### 下载git仓库
 
-**注：** 由于本人修改了`docker-compose/services/mochat_init/Dockerfile`文件（其中`RUN apk --no-cache add netcat-openbsd`这句在构建镜像时会出错），暂时又未能合并到MoChat官方仓库，因此请克隆下载本人修改后的如下仓库。
+`git clone https://github.com/mochat/mochat`
 
-`git clone https://github.com/aben1188/mochat`
-
-`git clone https://github.com/aben1188/docker-compose`
+`git clone https://github.com/mochat/docker-compose`
 
 或从gitee克隆下载(国内速度更快)：
 

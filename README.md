@@ -197,7 +197,7 @@ docker-compose up mochat_init
 
 `mochat/dashboard/.env`、`mochat/sidebar/.env`和`mochat/operation/.env`，这三个.env文件默认一般无需修改，会在初始化过程中使用`docker-compose/.env`中的设置自动修改。
 
-不过需要特别注意的是，这三个.env文件中backend服务(即api-server)配置项的域名前面默认没有加上“http:”，导致访问`dashboard.yourdomain.com`时，你将只会看到“Hello Mochat”(访问`sidebar.yourdomain.com`、`operation.yourdomain.com`时类似)，而无法看到MoChat系统的登录界面。因此你仍需要手动修改一下。
+不过需要特别注意的是，这三个.env文件中backend服务(即api-server)配置项`VUE_APP_API_BASE_URL`的域名前面默认没有加上“http:”，导致访问`dashboard.yourdomain.com`时，你将只会看到“Hello Mochat”(访问`sidebar.yourdomain.com`、`operation.yourdomain.com`时类似)，而无法看到MoChat系统的登录界面。因此你仍需要手动修改一下。
 
 手动修改步骤如下：
 

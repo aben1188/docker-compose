@@ -197,7 +197,7 @@ docker-compose up mochat_init
 
 `mochat/dashboard/.env`、`mochat/sidebar/.env`和`mochat/operation/.env`，这三个.env文件默认一般无需修改，会在初始化过程中使用`docker-compose/.env`中的设置自动修改。
 
-不过需要特别注意的是，其中api-server的端口默认被错误地设置为了nginx服务的宿主机映射端口(比如8080)，而非backend服务的宿主机映射端口(比如9501)，因此仍需手动修改该端口，否则，会等同于访问：`backend.yourdomain.com`，你将会只能看到“Hello Mochat”，而无法看到MoChat系统的登录界面。
+不过需要特别注意的是，这三个.env文件中backend服务(即api-server)的域名前面默认没有加上“http:”，导致访问`dashboard.yourdomain.com`时，你将只会看到“Hello Mochat”(访问`sidebar.yourdomain.com`、`operation.yourdomain.com`时类似)，而无法看到MoChat系统的登录界面。因此你仍需要手动修改一下。
 
 手动修改步骤如下：
 
@@ -207,10 +207,10 @@ docker-compose up mochat_init
 docker-compose stop backend nginx mysql redis
 ```
 
-2、依次打开`mochat/dashboard/.env`、`mochat/sidebar/.env`和`mochat/operation/.env`文件，将`VUE_APP_API_BASE_URL`的值修改为：`http://backend.yourdomain.com:9501 `(如果你前面修改为了其他端口，则使用修改后的端口），如下：
+2、依次打开`mochat/dashboard/.env`、`mochat/sidebar/.env`和`mochat/operation/.env`文件，将`VUE_APP_API_BASE_URL=//backend.a1b2.top`修改为：
 
 ```　　
-VUE_APP_API_BASE_URL=http://backend.yourdomain.com:9501
+VUE_APP_API_BASE_URL=http://backend.yourdomain.com
 ```
 
 3、再次执行`docker-compose up`或`docker-compose up -d`即可。

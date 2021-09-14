@@ -15,6 +15,7 @@
 `git clone https://gitee.com/mochat/mochat`
 
 `git clone https://gitee.com/mochat/docker-compose`
+
     
 **注意：**
 
@@ -48,7 +49,7 @@ sidebar.yourdomain.com  （用于侧边栏）
 127.0.0.1 operation.yourdomain.com  
 127.0.0.1 sidebar.yourdomain.com
 ```
-　　      
+
 2、api.mo.chat为系统占用域名，请避免使用。
   
 3、.dev与.app域名为chrome浏览器独家使用域名，使用chrome浏览器时请避免使用；

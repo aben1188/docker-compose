@@ -167,6 +167,8 @@ mochat_init exited with code 0
 
 成功启动运行的时间根据主机配置、网络速度等因素的不同，时间可能会比较长，请耐心等待。
 
+成功启动运行后，执行`docker-compose ps`命令，即可查看容器运行详情。
+
 ```
 docker-compose ps  
 

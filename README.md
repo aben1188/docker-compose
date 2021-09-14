@@ -6,9 +6,9 @@
   
 ### 下载git仓库
 
-`git clone https://github.com/mochat/mochat`
+`git clone https://github.com/mochat-cloud/mochat`
 
-`git clone https://github.com/mochat/docker-compose`
+`git clone https://github.com/mochat-cloud/docker-compose`
 
 或从gitee克隆下载(国内速度更快)：
 

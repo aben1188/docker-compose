@@ -8,28 +8,31 @@
 
 **注：** 由于本人修改了`docker-compose/services/mochat_init/Dockerfile`文件（其中`RUN apk --no-cache add netcat-openbsd`这句在构建镜像时会出错），暂时又未能合并到MoChat官方仓库，因此请克隆下载本人修改后的如下仓库。
 
-`git clone https://github.com/aben1188/mochat.git`
+`git clone https://github.com/aben1188/mochat`
 
-　　或使用github国内源加速下载：`git clone https://github.com.cnpmjs.org/aben1188/mochat.git`
+`git clone https://github.com/aben1188/docker-compose`
 
-`git clone https://github.com/aben1188/docker-compose.git`
+或从gitee克隆下载(国内速度更快)：
 
-　　或使用github国内源加速下载：`git clone https://github.com.cnpmjs.org/aben1188/docker-compose.git`
+`git clone https://gitee.com/mochat/mochat`
+
+`git clone https://gitee.com/mochat/docker-compose`
     
 **注意：**
 
 1、mac版`docker.desktop`版本推荐3.0以上，以避免内存飙高问题；
   
-2、两个仓库必须克隆下载到同一个目录下：
+2、两个仓库必须克隆下载到同一个目录下(假设目录为`~/my-mochat`)：
 
-　　`mochat-cloud/mochat` 下载目录为 `/path/to/mochat`；
+　　`mochat-cloud/mochat` 下载目录为 `~/my-mochat/mochat`；
   
-　　`mochat-cloud/docker-compose` 下载目录为 `/path/to/docker-compose`。
+　　`mochat-cloud/docker-compose` 下载目录为 `~/my-mochat/docker-compose`。
 
 
 ### 解析域名
 
 这里假设一级域名为`yourdomain.com`，需修改为你自己的真实域名。
+
 ```
 backend.yourdomain.com  （用于后端api接口服务）
 dashboard.yourdomain.com  （用于管理后台）
@@ -40,17 +43,13 @@ sidebar.yourdomain.com  （用于侧边栏）
 **注意：**
 
 1、如果你仅在本地浏览(即本机浏览)，则无需解析，直接在系统hosts文件中添加如下内容即可(推荐使用SwitchHosts来修改hosts)：
+
 ```  
 127.0.0.1 backend.yourdomain.com  
 127.0.0.1 dashboard.yourdomain.com  
 127.0.0.1 operation.yourdomain.com  
 127.0.0.1 sidebar.yourdomain.com
 ```
-
-hosts文件在各操作系统中的路径：
-  
-　　Windows系统：`C:\Windows\System32\drivers\etc\hosts`  
-　　类Unix系统(Linux、Mac、iOS、Android等)：`/etc/hosts`  
 　　      
 2、api.mo.chat为系统占用域名，请避免使用。
   
@@ -81,7 +80,7 @@ hosts文件在各操作系统中的路径：
 
 ## 二、修改配置
 
-`cd /path/to/docker-compose`
+`cd ~/my-mochat/docker-compose`
 
 `cp .env.example .env`  #根据自己的情况，修改相应配置，详见下面的提示
 
@@ -135,7 +134,7 @@ API_SERVER_URL=backend.yourdomain.com
 ## 三、构建镜像
 
 ```
-cd /path/to/docker-compose
+cd ~/my-mochat/docker-compose
 docker-compose build
 ```
 
@@ -143,7 +142,7 @@ docker-compose build
 ## 四、运行容器
 
 ```
-cd /path/to/docker-compose
+cd ~/my-mochat/docker-compose
 docker-compose up
 ```
 
@@ -156,12 +155,14 @@ docker-compose up -d
 ```
 
 执行`docker-compose up`后，dashboard、sidebar、operation、mochat_init容器运行完后会自动退出，显示如下信息：
+
 ```
 dashboard exited with code 0
 sidebar exited with code 0
 operation exited with code 0
 mochat_init exited with code 0
 ```
+
 这属于正常现象，不属于错误；并且这四个容器必须都显示“exited with code 0”或“Exited (0)”之后，才能正常访问并登录MoChat系统。
 
 这是因为，mochat_init容器仅用于初始化MoChat系统，而dashboard容器、sidebar容器、operation容器仅用于编译MoChat系统的前端文件，编译完之后这些容器即会终止运行；换言之，这些容器终止运行之后才表明前端文件编译完成了，这时候MoChat系统才可以正常接受访问，否则将会显示500错误。
@@ -186,7 +187,7 @@ sidebar       /bin/sh -c sh -c "yarn ins ...   Exit 0
 如果初始化失败，可执行如下命令重新初始化。
 
 ```
-cd /path/to/docker-compose
+cd ~/my-mochat/docker-compose
 rm ./services/mochat_init/install.lock
 docker-compose up mochat_init
 ```
@@ -200,11 +201,13 @@ docker-compose up mochat_init
 手动修改步骤如下：
 
 1、先停止所有MoChat相关容器：如果之前是在宿主机前台运行的话，则执行快捷键`ctrl+c`即可，否则需要执行：
+
 ```
 docker-compose stop backend nginx mysql redis
 ```
 
 2、依次打开`mochat/dashboard/.env`、`mochat/sidebar/.env`和`mochat/operation/.env`文件，将`VUE_APP_API_BASE_URL`的值修改为：`http://backend.yourdomain.com:9501 `(如果你前面修改为了其他端口，则使用修改后的端口），如下：
+
 ```　　
 VUE_APP_API_BASE_URL=http://backend.yourdomain.com:9501
 ```
